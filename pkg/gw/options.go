@@ -48,6 +48,7 @@ func DefaultOptions() Options {
 	}
 }
 
+
 // WithAddress sets address
 func (o Options) WithAddress(address string) Options {
 	o.Address = address

@@ -40,11 +40,11 @@ type SetHandler interface {
 
 type setHandler struct {
 	mux    *runtime.ServeMux
-	client *client.ImmuClient
+	client client.ImmuClient
 	rs     client.RootService
 }
 
-func NewSetHandler(mux *runtime.ServeMux, client *client.ImmuClient, rs client.RootService) SetHandler {
+func NewSetHandler(mux *runtime.ServeMux, client client.ImmuClient, rs client.RootService) SetHandler {
 	return &setHandler{
 		mux:    mux,
 		client: client,

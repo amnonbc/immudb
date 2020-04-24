@@ -26,29 +26,23 @@ import (
 type Options struct {
 	Address            string
 	Port               int
-	DialRetries        int
 	HealthCheckRetries int
 	MTLs               bool
 	MTLsOptions        MTLsOptions
 	Auth               bool
-	DialOptions        []grpc.DialOption
+	DialOptions        *[]grpc.DialOption
 	Config             string
-	Pidfile            string
-	Logfile            string
 }
 
-func DefaultOptions() Options {
-	return Options{
+func DefaultOptions() *Options {
+	return &Options{
 		Address:            "127.0.0.1",
 		Port:               3322,
-		DialRetries:        5,
 		HealthCheckRetries: 5,
 		MTLs:               false,
 		Auth:               false,
 		Config:             "configs/immuclient.ini",
-		Pidfile:            "",
-		Logfile:            "",
-		DialOptions:        []grpc.DialOption{},
+		DialOptions:        &[]grpc.DialOption{},
 	}
 }
 
@@ -61,12 +55,6 @@ func (o Options) WithAddress(address string) Options {
 // WithPort sets port
 func (o Options) WithPort(port int) Options {
 	o.Port = port
-	return o
-}
-
-// WithDialRetries sets dial retries
-func (o Options) WithDialRetries(retries int) Options {
-	o.DialRetries = retries
 	return o
 }
 
@@ -94,18 +82,6 @@ func (o Options) WithConfig(config string) Options {
 	return o
 }
 
-// WithPidfile sets pidfile
-func (o Options) WithPidfile(pidfile string) Options {
-	o.Pidfile = pidfile
-	return o
-}
-
-// WithLogfile sets logfile
-func (o Options) WithLogfile(logfile string) Options {
-	o.Logfile = logfile
-	return o
-}
-
 // WithMTLsOptions sets MTLsOptions
 func (o Options) WithMTLsOptions(MTLsOptions MTLsOptions) Options {
 	o.MTLsOptions = MTLsOptions
@@ -113,12 +89,8 @@ func (o Options) WithMTLsOptions(MTLsOptions MTLsOptions) Options {
 }
 
 // WithDialOptions sets dialOptions
-func (o Options) WithDialOptions(replaceExisting bool, dialOptions ...grpc.DialOption) Options {
-	if replaceExisting {
-		o.DialOptions = dialOptions
-	} else {
-		o.DialOptions = append(o.DialOptions, dialOptions...)
-	}
+func (o Options) WithDialOptions(dialOptions *[]grpc.DialOption) Options {
+	o.DialOptions = dialOptions
 	return o
 }
 

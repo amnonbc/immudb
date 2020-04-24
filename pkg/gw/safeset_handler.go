@@ -35,11 +35,11 @@ type SafesetHandler interface {
 
 type safesetHandler struct {
 	mux    *runtime.ServeMux
-	client *client.ImmuClient
+	client client.ImmuClient
 	rs     client.RootService
 }
 
-func NewSafesetHandler(mux *runtime.ServeMux, client *client.ImmuClient, rs client.RootService) SafesetHandler {
+func NewSafesetHandler(mux *runtime.ServeMux, client client.ImmuClient, rs client.RootService) SafesetHandler {
 	return &safesetHandler{
 		mux:    mux,
 		client: client,

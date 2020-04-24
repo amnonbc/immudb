@@ -32,11 +32,11 @@ type HistoryHandler interface {
 
 type historyHandler struct {
 	mux    *runtime.ServeMux
-	client *client.ImmuClient
+	client client.ImmuClient
 	rs     client.RootService
 }
 
-func NewHistoryHandler(mux *runtime.ServeMux, client *client.ImmuClient, rs client.RootService) HistoryHandler {
+func NewHistoryHandler(mux *runtime.ServeMux, client client.ImmuClient, rs client.RootService) HistoryHandler {
 	return &historyHandler{
 		mux,
 		client,

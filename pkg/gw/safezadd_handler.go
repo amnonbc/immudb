@@ -35,11 +35,11 @@ type SafeZAddHandler interface {
 
 type safeZAddHandler struct {
 	mux    *runtime.ServeMux
-	client *client.ImmuClient
+	client client.ImmuClient
 	rs     client.RootService
 }
 
-func NewSafeZAddHandler(mux *runtime.ServeMux, client *client.ImmuClient, rs client.RootService) SafeZAddHandler {
+func NewSafeZAddHandler(mux *runtime.ServeMux, client client.ImmuClient, rs client.RootService) SafeZAddHandler {
 	return &safeZAddHandler{
 		mux:    mux,
 		client: client,
